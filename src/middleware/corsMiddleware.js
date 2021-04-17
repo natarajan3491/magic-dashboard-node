@@ -1,5 +1,13 @@
 var HttpError = require('../exceptions/http');
 
+/**
+ * Error Middleware Function.
+ *
+ * @param {Object} req is the Http request
+ * @param {Object} res is the Http response
+ * @param {Object} next is the Http next object
+ *
+ */
 const corsMiddleware = (req, res, next) => {
   try {
     var origin = '*';

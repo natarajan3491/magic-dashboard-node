@@ -2,15 +2,16 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
-var corsMiddleware = require('./src/middleware/corsMiddleware');
-const errorMiddleware = require('./src/middleware/errorMiddleware'); //error Middlerware
-const routes = require('./src/routes/routes'); //api-routes
+var corsMiddleware = require('./src/middleware/corsMiddleware'); 
+const errorMiddleware = require('./src/middleware/errorMiddleware');
+const routes = require('./src/routes/routes');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+ //cors Middlerware
 app.use(corsMiddleware);
 
+// MongoDB connection
 mongoose.connect(
     "mongodb+srv://nattu:uttan@cluster0.erlbp.mongodb.net/dashboard?retryWrites=true&w=majority",
     {
@@ -19,10 +20,10 @@ mongoose.connect(
       useUnifiedTopology: true
     }
   );
-
+ //api-routes
 app.use('/', routes);
-
-app.use(errorMiddleware); // error middleware
+// error middleware
+app.use(errorMiddleware); 
 
 const PORT = 8080;
 app.listen(PORT, () => {

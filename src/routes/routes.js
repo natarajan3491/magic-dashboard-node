@@ -1,11 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const graphModel = require("../models/graph");
-
+/**
+ * Check node api service 
+ */
 router.get('/', (req, res) => {
     res.send('Node api works');
 });
 
+/**
+ * Check node api service 
+ */
 router.get('/chart', async (req, res) => {
     const graph = await graphModel.find({});
     try {
@@ -15,6 +20,9 @@ router.get('/chart', async (req, res) => {
     }
 });
 
+/**
+ * Create chart api
+ */
 router.post("/chart", async (req, res) => {
     const graph = new graphModel(req.body);
     try {
@@ -25,6 +33,9 @@ router.post("/chart", async (req, res) => {
     }
 });
 
+/**
+ * Update chart api
+ */
 router.patch("/chart/:id", async (req, res) => {
     try {
       var graph = await graphModel.findByIdAndUpdate(req.params.id, req.body);
@@ -35,7 +46,9 @@ router.patch("/chart/:id", async (req, res) => {
     }
   });
 
-
+/**
+ * Delete chart api
+ */
   router.delete("/chart/:id", async (req, res) => {
     try {
       const graph = await graphModel.findByIdAndDelete(req.params.id);
